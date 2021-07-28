@@ -15,6 +15,7 @@
 		9519918826AFD71600E2EF54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9519918726AFD71600E2EF54 /* Assets.xcassets */; };
 		9519918B26AFD71600E2EF54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9519918926AFD71600E2EF54 /* LaunchScreen.storyboard */; };
 		9519919426AFEB7600E2EF54 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9519919326AFEB7600E2EF54 /* DetailsVC.swift */; };
+		951991A226B13E7200E2EF54 /* buildJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951991A126B13E7200E2EF54 /* buildJson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9519918A26AFD71600E2EF54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9519918C26AFD71600E2EF54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9519919326AFEB7600E2EF54 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		951991A126B13E7200E2EF54 /* buildJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buildJson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				9519917F26AFD71200E2EF54 /* ViewController.swift */,
 				9519919326AFEB7600E2EF54 /* DetailsVC.swift */,
 				9519918126AFD71200E2EF54 /* Main.storyboard */,
+				951991A126B13E7200E2EF54 /* buildJson.swift */,
 				9519918726AFD71600E2EF54 /* Assets.xcassets */,
 				9519918926AFD71600E2EF54 /* LaunchScreen.storyboard */,
 				9519918C26AFD71600E2EF54 /* Info.plist */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				951991A226B13E7200E2EF54 /* buildJson.swift in Sources */,
 				9519918026AFD71200E2EF54 /* ViewController.swift in Sources */,
 				9519918626AFD71200E2EF54 /* busAlarmWithNavigate.xcdatamodeld in Sources */,
 				9519917C26AFD71200E2EF54 /* AppDelegate.swift in Sources */,
