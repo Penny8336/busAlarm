@@ -35,14 +35,19 @@ var destination = ""
 class DetailsVC: UIViewController {
 
     var enterBusID = ""
+    var seletedStop = ""
+    var alarmTime = ""
+    var direction = ""
     var routes = [[String]]()
-    var tempRoute = ["temp"]
+    var routesDict: Dictionary<String, String> = [:]
+    var tempRoute = ["select the bus"]
     var departureRoute = Array<String>()
     var destinationRoute = Array<String>()
     
     @IBOutlet weak var busID: UITextField!
     @IBOutlet weak var directionControl: UISegmentedControl!
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var timePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +109,7 @@ class DetailsVC: UIViewController {
                 print(busRoutes.count)
                 for direc in 0...1 {
                     for stop in busRoutes[direc].Stops{
+                        self.routesDict[stop.Zh_tw] = stop.StopUID
                         if direc == 0 {
                             self.departureRoute.append(stop.Zh_tw)
                         }
@@ -142,6 +148,7 @@ class DetailsVC: UIViewController {
         switch sender.selectedSegmentIndex {
             case 0:
                 self.tempRoute = self.departureRoute
+                
             case 1:
                 self.tempRoute = self.destinationRoute
 
@@ -154,10 +161,18 @@ class DetailsVC: UIViewController {
 
     }
     
-    
+    @IBAction func setTime(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+
+//        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+
+        let strDate = dateFormatter.string(from: timePicker.date)
+        alarmTime = strDate
+    }
     
     @IBAction func setAlarm(_ sender: Any) {
-        print("set busAlarm")
+        print("set busAlarm","butID",enterBusID,"stop",routesDict[seletedStop],"time",alarmTime)
     }
 }
 
@@ -179,4 +194,12 @@ extension DetailsVC: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return tempRoute[row]
     }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        seletedStop = tempRoute[row]
+        print(row)
+    }
+    
+
 }
+
