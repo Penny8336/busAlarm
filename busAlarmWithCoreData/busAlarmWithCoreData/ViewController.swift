@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         content.sound = .default
         content.body = "success"
         
-        let targetDate = Date().addingTimeInterval(5)
+        let targetDate = Date().addingTimeInterval(50)
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour,.minute, .second], from: targetDate), repeats: false)
         
         let testRequest = UNNotificationRequest(identifier: "someLongID", content: content, trigger: trigger)

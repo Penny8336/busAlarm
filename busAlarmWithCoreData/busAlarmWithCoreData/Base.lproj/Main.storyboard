@@ -113,6 +113,7 @@
                         <outlet property="busID" destination="6uy-zW-LAa" id="56q-G6-SHb"/>
                         <outlet property="directionControl" destination="7K7-Zc-GGh" id="xHo-I3-BCM"/>
                         <outlet property="pickerView" destination="5xj-SI-tfx" id="tMf-hD-rYJ"/>
+                        <outlet property="saveButton" destination="ug0-UD-cFM" id="U5h-z0-rWL"/>
                         <outlet property="timePicker" destination="fVn-df-8SG" id="5NY-5P-SjJ"/>
                     </connections>
                 </viewController>

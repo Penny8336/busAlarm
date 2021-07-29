@@ -8,6 +8,7 @@
 import UIKit
 import CryptoKit
 import Foundation
+import CoreData
 
 func getTimeString() -> String {
     let dateFormater = DateFormatter()
@@ -35,9 +36,10 @@ var destination = ""
 class DetailsVC: UIViewController {
 
     var enterBusID = ""
-    var seletedStop = ""
+    var seletedStop: String?
     var alarmTime = ""
     var direction = ""
+    var stopID: String?
     var routes = [[String]]()
     var routesDict: Dictionary<String, String> = [:]
     var tempRoute = ["select the bus"]
@@ -48,6 +50,10 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var directionControl: UISegmentedControl!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var chosenPainting = ""
+    var chosenPaintingId : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +62,57 @@ class DetailsVC: UIViewController {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognizer)
+        
+        //Core Data
+        
+//        if chosenPainting != "" {
+//
+//            saveButton.isHidden = true
+//
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            let context = appDelegate.persistentContainer.viewContext
+//
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Paintings")
+//            let idString = chosenPaintingId?.uuidString
+//            fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
+//            fetchRequest.returnsObjectsAsFaults = false
+//
+//            do {
+//               let results = try context.fetch(fetchRequest)
+//
+//                if results.count > 0 {
+//
+//                    for result in results as! [NSManagedObject] {
+//
+//                        if let busID = result.value(forKey: "busID") as? String {
+//    //                        nameText.text = name
+//                        }
+//
+//                        if let stopID = result.value(forKey: "artist") as? String {
+//    //                        artistText.text = artist
+//                        }
+//
+//                        if let alarmTime = result.value(forKey: "year") as? Int {
+//    //                        yearText.text = String(year)
+//                        }
+//
+//
+//                    }
+//                }
+//
+//            } catch{
+//                print("error")
+//            }
+//
+//
+//        } else {
+//            saveButton.isHidden = false
+//            saveButton.isEnabled = false
+////            nameText.text = ""
+////            artistText.text = ""
+////            yearText.text = ""
+//        }
+    
     }
     
     @objc func hideKeyboard(){
@@ -172,9 +229,67 @@ class DetailsVC: UIViewController {
     }
     
     @IBAction func setAlarm(_ sender: Any) {
-        print("set busAlarm","butID",enterBusID,"stop",routesDict[seletedStop],"time",alarmTime)
+        print("set busAlarm","butID",enterBusID,"stop", stopID,"time",alarmTime)
+
+        //core data
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//
+//        let newSetting = NSEntityDescription.insertNewObject(forEntityName: "Paintings", into: context)
+//
+//        //Attributes
+//
+//        newSetting.setValue(enterBusID, forKey: "busID")
+//        newSetting.setValue(stopID, forKey: "stopID")
+//        newSetting.setValue(alarmTime, forKey: "alarmTime")
+//
+//        do {
+//            try context.save()
+//            print("success")
+//        } catch {
+//            print("error")
+//        }
+//
+//        NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
+//        self.navigationController?.popViewController(animated: true)
     }
 }
+
+//@IBAction func saveButtonClicked(_ sender: Any) {
+//
+//
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let context = appDelegate.persistentContainer.viewContext
+//
+//    let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paintings", into: context)
+//
+//    //Attributes
+//
+//    newPainting.setValue(nameText.text!, forKey: "name")
+//    newPainting.setValue(artistText.text!, forKey: "artist")
+//
+//    if let year = Int(yearText.text!) {
+//        newPainting.setValue(year, forKey: "year")
+//    }
+//
+//    newPainting.setValue(UUID(), forKey: "id")
+//
+//    let data = imageView.image!.jpegData(compressionQuality: 0.5)
+//
+//    newPainting.setValue(data, forKey: "image")
+//
+//    do {
+//        try context.save()
+//        print("success")
+//    } catch {
+//        print("error")
+//    }
+//
+//
+//    NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
+//    self.navigationController?.popViewController(animated: true)
+//
+//}
 
 extension DetailsVC: UIPickerViewDataSource{
     
@@ -196,8 +311,9 @@ extension DetailsVC: UIPickerViewDelegate{
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        seletedStop = tempRoute[row]
-        print(row)
+        var seletedStop = tempRoute[row]
+        stopID = routesDict[seletedStop]
+        
     }
     
 
